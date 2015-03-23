@@ -108,9 +108,7 @@ function inputKey(tableDom, keyWord) {
     		clearTd(tds[row][col]);
     		if (key.test(tds[row][col].innerHTML)) {
     			ifHave = true;
-    			while (key.test(tds[row][col].innerHTML)) {
-    			    tds[row][col].innerHTML = tds[row][col].innerHTML.replace(keyWord, "<span class=\"heightLight\">"+keyWord+"</span>");
-    			}
+    			    tds[row][col].innerHTML = tds[row][col].innerHTML.replace(key, "<span class=\"heightLight\">"+tds[row][col].innerHTML.match(key)[0]+"</span>");
     		}
     	}
     	toDoTr(tableDom, ifHave, row);//把这一行none掉或显示出
@@ -127,8 +125,7 @@ function toDoTr(tableDom, ifHave, row) {
 }
 //清除td中高亮部分
 function clearTd(td) {
-    td.innerHTML = td.innerHTML.replace("<span class=\"heightLight\">", "");
-    td.innerHTML = td.innerHTML.replace("</span>", "");
+    td.innerHTML = td.innerHTML.replace(/<span class=\"heightLight\">|<\/span>/g, "");
 }
 //获取所有的表格td
 function getTds(tableDom) {
