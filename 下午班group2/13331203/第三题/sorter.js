@@ -108,7 +108,9 @@ function inputKey(tableDom, keyWord) {
     		clearTd(tds[row][col]);
     		if (key.test(tds[row][col].innerHTML)) {
     			ifHave = true;
-    			tds[row][col].innerHTML = tds[row][col].innerHTML.replace(keyWord, "<span class=\"heightLight\">"+keyWord+"</span>");
+    			while (key.test(tds[row][col].innerHTML)) {
+    			    tds[row][col].innerHTML = tds[row][col].innerHTML.replace(keyWord, "<span class=\"heightLight\">"+keyWord+"</span>");
+    			}
     		}
     	}
     	toDoTr(tableDom, ifHave, row);//把这一行none掉或显示出
